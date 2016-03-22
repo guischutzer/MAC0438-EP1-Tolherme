@@ -18,12 +18,11 @@ double buffon(int r){
     if(d + sin(theta) < 0 || d + sin(theta) > 1)
       t++;
   }
-
-  printf("t = %d\n", t);
-  return (double)(t/r);
+  
+  return t/(double)r;
 }
 
 int main(int argc, char *argv[]){
   double p = buffon(atoi(argv[1]));
-  printf("Probabilidade estimada: %d.\n", p);
+  printf("Probabilidade estimada: %f.\n", p);
 }
