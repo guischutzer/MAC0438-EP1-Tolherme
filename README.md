@@ -1,4 +1,4 @@
-# MemoryManager v1.0
+#Forks & Waits
 
 ####MAC0438 - Programação Concorrente - IME-USP  
 ######EP1 - 04/02/2016
