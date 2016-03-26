@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include "area.h"
 
 double area(int s){
   int i = 0, t = 0;

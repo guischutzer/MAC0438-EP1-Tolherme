@@ -3,8 +3,8 @@
 #include <time.h>
 #include "sorting.h"
 
-int main(){
-  sorting(100);
+int main(int argc, char *argv[]){
+  sorting(atoi(argv[1]));
   return(0);
 }
 
