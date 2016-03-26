@@ -1,3 +1,17 @@
+/*******************************************************************/
+/**   MAC 438  - Programação Concorrente                          **/
+/**   IME-USP  - Primeiro Semestre de 2016                        **/
+/**   Prof. Marcel Parolin Jackowski                              **/
+/**                                                               **/
+/**   Primeiro Exercício-Programa                                 **/
+/**   Arquivo: EP1.c                                              **/
+/**                                                               **/
+/**   Guilherme Souto Schützer                      8658544       **/
+/**   Tomás Bezerra Marcondes Paim                  7157602       **/
+/**                                                               **/
+/**   04/02/2016                                                  **/
+/*******************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -16,19 +30,25 @@ int main(int argc, char *argv[]){
     return 1;
   }
 
+  /* Usado para reconhecer o processo pai */
   pidpai = getpid();
 
+  /* Inicialização dos parametros */
   m = atoi(argv[1]);
   n = atoi(argv[2]);
   r = atoi(argv[3]);
   s = atoi(argv[4]);
 
+  /* Inicializacao do vetor de PIDs */
   p[0] = 0;
   p[1] = 0;
   p[2] = 0;
   p[3] = 0;
 
+  /* Laco de criacao dos processos */
   for(i = 0; i < 4; i++){
+    /* Cada posicao do vetor recebe o PID do
+       processo correspondente (na ordem de argumentos)*/
     switch(i){
       case 0:
         printf("SORTING-->Inicio.\n");
@@ -46,18 +66,26 @@ int main(int argc, char *argv[]){
         break;
     }
     fork();
+    /* Caso seja um processo-filho, coloca o PID próprio no
+       vetor e sai do laco, evitando criar "processos-netos" */
     if(getpid() != pidpai){
       p[i] = getpid();
       break;
     }
   }
 
+  /* Codigo subsequente de cada processo */
   if(getpid() == pidpai){
+    /* Pai espera os quatro processos. Cada wait() trava a execucao
+    ate que algum processo-filho tenha acabado. Se quatro wait()s sao executados,
+    significa que esperamos qualquer processo-filho sair quatro vezes,
+    ou seja, esperamos os quatro processos acabarem */
     printf("PAI-->Comeco da espera\n");
     for(i = 0; i < 4; i++)
       wait();
     printf("PAI-->Fim da espera.\n");
   }
+  /* Nos casos seguintes, cada processo executa a tarefa determinada */
   else if(getpid() == p[0]){
     sorting(m);
     printf("SORTING-->Fim.\n");
