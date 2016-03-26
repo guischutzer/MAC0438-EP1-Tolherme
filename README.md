@@ -19,4 +19,4 @@ Rodando:
 ./ep1 <tamanho vetor> <numero p/ Fibonnaci> <jogadas de Buffon> <pontos de area>
 ```
 
-O algoritmo de 
+O algoritmo de heapsort utilizado é do WikiBooks (https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Heapsort).
