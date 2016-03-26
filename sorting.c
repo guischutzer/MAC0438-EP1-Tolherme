@@ -3,11 +3,6 @@
 #include <time.h>
 #include "sorting.h"
 
-int main(int argc, char *argv[]){
-  sorting(atoi(argv[1]));
-  return(0);
-}
-
 void sorting(int m){
   int i, *v;
   time_t t;
@@ -15,7 +10,7 @@ void sorting(int m){
   v = malloc(m * sizeof(int));
   srand((unsigned) time(&t));
 
-  printf("|");
+  printf("SORTING: |");
   for(i = 0; i < m; i++){
     v[i] = rand() % 100;
     printf(" %02d |", v[i]);
@@ -23,7 +18,7 @@ void sorting(int m){
   printf("\n");
 
   heapsort(v, m);
-  printf("|");
+  printf("SORTED: |");
   for(i = 0; i < m; i++)
     printf(" %02d |", v[i]);
   printf("\n");
@@ -31,13 +26,14 @@ void sorting(int m){
   free(v);
 }
 
-void heapsort(int arr[], unsigned int N)
-{
-    if(N==0) // check if heap is empty
-      return;
+void heapsort(int arr[], unsigned int N){
 
     int t; /* the temporary value */
     unsigned int n = N, parent = N/2, index, child; /* heap indexes */
+
+    if(N==0) /* check if heap is empty */
+      return;
+
     /* loop until array is sorted */
     while (1) {
         if (parent > 0) {

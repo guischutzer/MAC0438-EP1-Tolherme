@@ -4,6 +4,8 @@
 #include <math.h>
 #include "buffon.h"
 
+#define PI 3.14159265359
+
 double buffon(int r){
   int i, t = 0;
   double d, theta;
@@ -11,19 +13,13 @@ double buffon(int r){
 
   srand((unsigned) time(&T));
 
-  printf("Faremos %d iteracoes.\n", r);
+  printf("BUFFON: Faremos %d iteracoes.\n", r);
   for(i = 0; i < r; i++){
     d = (double)rand() / (double)RAND_MAX;
-    theta = (double)rand()*2*M_PI / (double)RAND_MAX;
-    //printf("%8f, %8f\n", d, theta);
+    theta = (double)rand()*2*PI / (double)RAND_MAX;
     if(d + sin(theta) < 0 || d + sin(theta) > 1)
       t++;
   }
 
   return t/(double)r;
-}
-
-int main(int argc, char *argv[]){
-  double p = buffon(atoi(argv[1]));
-  printf("Probabilidade estimada: %f.\n", p);
 }

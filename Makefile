@@ -1,16 +1,21 @@
+CFLAGS = -O2 -ansi -pedantic -Wno-unused-result -lm
+CC = gcc
+RM = rm
+#---------------------------------------------------
 
-all: main fibo sorting buffon area
+all: ep1 clean
 
 ep1: main.o fibo.o sorting.o buffon.o area.o
-	gcc main.o fibo.o sorting.o buffon.o area.o -o ep1
-
+	$(CC) main.o fibo.o sorting.o buffon.o area.o -o ep1 $(CFLAGS)
 main.o: main.c sorting.h fibo.h buffon.h area.h
-	gcc -c main.c
+	$(CC) -c main.c $(CFLAGS)
 fibo.o: fibo.h fibo.c
-	gcc -c fibo.c
+	$(CC) -c fibo.c $(CFLAGS)
 sorting.o: sorting.h sorting.c
-	gcc -c sorting.c
+	$(CC) -c sorting.c $(CFLAGS)
 buffon.o: buffon.h buffon.c
-	gcc -c buffon.c -lm
+	$(CC) -c buffon.c $(CFLAGS)
 area.o: area.h area.c
-	gcc -c area.c -lm
+	$(CC) -c area.c $(CFLAGS)
+clean:
+	rm *.o
